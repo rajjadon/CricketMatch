@@ -1,6 +1,5 @@
 package com.raj.cricketmatch.presentation.teamSelectScreen
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,14 +32,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
-import com.google.gson.Gson
 import com.raj.cricketmatch.data.Team
 import com.raj.cricketmatch.presentation.teamSelectScreen.viewmodel.TeamSelectViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TeamSelectScreen(viewModel: TeamSelectViewModel, onCLick: (Team, Team) -> Unit) {
+fun TeamSelectScreen(viewModel: TeamSelectViewModel = hiltViewModel(), onCLick: (Team, Team) -> Unit) {
     val teams by viewModel.teams.collectAsState(initial = emptyList())
     val isLoading by viewModel.isLoading.collectAsState(initial = true)
     val errorMessage by viewModel.errorMessage.collectAsState(initial = "")

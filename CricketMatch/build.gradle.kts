@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
-    id("com.google.dagger.hilt.android") version "2.48.1" // Or the latest version
+    alias(libs.plugins.daggerHilt)
     kotlin("kapt")
 }
 
@@ -22,8 +22,17 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            isDebuggable = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        release {
+            isMinifyEnabled = true
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -59,16 +68,15 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.glide)
     implementation(libs.androidx.appcompat)
-    annotationProcessor(libs.glide.compiler)
     implementation(libs.androidx.lifecycle.runtime.ktx.v262)
     implementation(libs.coil.compose)
     implementation(libs.gson)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.hilt.android) // Or the latest version
-    kapt(libs.hilt.compiler) // Or the latest version
-    implementation(libs.androidx.hilt.navigation.compose) // For Compose navigation (optional)
-    kapt(libs.androidx.hilt.compiler)
-
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.hilt.compiler)
+    kapt(libs.hilt.android.processor)
+    implementation(libs.navigation.compose)
+    implementation(libs.timber)
 }

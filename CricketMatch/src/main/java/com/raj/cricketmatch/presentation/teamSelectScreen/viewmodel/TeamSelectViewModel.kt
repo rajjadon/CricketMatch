@@ -8,13 +8,16 @@ import com.raj.cricketmatch.data.Team
 import com.raj.cricketmatch.extension.fromJson
 import com.raj.cricketmatch.extension.getJsonFromAssets
 import com.raj.cricketmatch.extension.toStateFlow
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class TeamSelectViewModel(private val context: Context) : ViewModel() {
+@HiltViewModel
+class TeamSelectViewModel @Inject constructor(@ApplicationContext private val context: Context) : ViewModel() {
 
     private val _teams = MutableStateFlow<List<Team>>(emptyList())
     val teams = _teams.toStateFlow()
