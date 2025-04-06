@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
+    id("com.google.dagger.hilt.android") version "2.48.1" // Or the latest version
+    kotlin("kapt")
 }
 
 android {
@@ -64,5 +66,9 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.gson)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt.android) // Or the latest version
+    kapt(libs.hilt.compiler) // Or the latest version
+    implementation(libs.androidx.hilt.navigation.compose) // For Compose navigation (optional)
+    kapt(libs.androidx.hilt.compiler)
 
 }
