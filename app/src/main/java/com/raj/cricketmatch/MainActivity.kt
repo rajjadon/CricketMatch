@@ -72,8 +72,8 @@ class MainActivity : ComponentActivity() {
                 val team2Name = entry.arguments?.getString("team2Name")
                 if (team1Name != null && team2Name != null) {
                     MatchScreen(
-                        team1Name = Team(name = team1Name),
-                        team2Name = Team(name = team2Name)
+                        team1 = Team(name = team1Name),
+                        team2 = Team(name = team2Name)
                     )
                 }
             }
