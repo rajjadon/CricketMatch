@@ -2,6 +2,7 @@ package com.raj.cricketmatch
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.gson.Gson
 import com.raj.cricketmatch.data.Team
 import com.raj.cricketmatch.presentation.matchScreen.MatchScreen
 import com.raj.cricketmatch.presentation.navigation.NavigationScreens
@@ -70,6 +72,7 @@ class MainActivity : ComponentActivity() {
             ) { entry -> // 'entry' provides access to the NavBackStackEntry
                 val team1Name = entry.arguments?.getString("team1Name")
                 val team2Name = entry.arguments?.getString("team2Name")
+
                 if (team1Name != null && team2Name != null) {
                     MatchScreen(
                         team1 = Team(name = team1Name),
